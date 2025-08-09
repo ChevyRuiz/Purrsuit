@@ -1,5 +1,8 @@
 package com.project.purrsuit.user.entity;
 
+import com.project.purrsuit.cover_letter.entity.CoverLetter;
+import com.project.purrsuit.job_application.entity.JobApplication;
+import com.project.purrsuit.resume.entity.Resume;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
