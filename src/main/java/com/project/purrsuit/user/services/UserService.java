@@ -11,5 +11,7 @@ public interface UserService {
 
     Response<List<UserDTO>> getAllUsers();
 
+    Response<UserDTO> getUserById(Long id);
+
     Response<UserDTO> getOwnAccountDetails();
 }

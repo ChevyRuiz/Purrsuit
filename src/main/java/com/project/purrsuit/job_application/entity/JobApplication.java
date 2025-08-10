@@ -12,6 +12,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -53,8 +54,6 @@ public class JobApplication {
     @NotNull(message = "currentJobStatus is required")
     private JobStatus currentJobStatus;
 
-    @OneToMany(mappedBy = "application", cascade = CascadeType.ALL)
-    private List<StatusRecord> statusHistory;
-
-
+    @OneToMany(mappedBy = "application", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<StatusRecord> statusHistory = new ArrayList<>();
 }
