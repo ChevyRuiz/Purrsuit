@@ -9,4 +9,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface JobApplicationRepository extends JpaRepository<JobApplication, Long>, JpaSpecificationExecutor<JobApplication> {
     Page<JobApplication> findByUserId(Long userId, Pageable pageable);
+    // add method to count how many applications of a user are in a given status
 }

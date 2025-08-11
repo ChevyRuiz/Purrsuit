@@ -56,7 +56,7 @@ public class AuthServiceImpl implements AuthService{
         log.info("INSIDE login()");
 
         User user = userRepository.findByUsername(loginRequest.getUsername())
-                .orElseThrow(() -> new NotFoundException("Invalid Email"));
+                .orElseThrow(() -> new NotFoundException("Invalid Username"));
 
         if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())){
             throw new BadRequestException("Invalid password");

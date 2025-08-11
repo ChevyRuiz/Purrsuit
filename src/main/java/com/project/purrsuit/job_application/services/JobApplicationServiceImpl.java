@@ -37,7 +37,6 @@ import java.util.stream.Stream;
 public class JobApplicationServiceImpl implements JobApplicationService{
 
     private final JobApplicationRepository jobApplicationRepository;
-    private final StatusRecordRepository statusRecordRepository;
     private final UserService userService;
     private final ModelMapper modelMapper;
 
@@ -72,6 +71,7 @@ public class JobApplicationServiceImpl implements JobApplicationService{
                 .jobDescription(applicationDTO.getJobDescription())
                 .additionalNotes(applicationDTO.getAdditionalNotes())
                 .currentJobStatus(applicationStatus)
+                .statusHistory(new ArrayList<>())
                 .build();
 
         // Manually link both sides
@@ -179,7 +179,13 @@ public class JobApplicationServiceImpl implements JobApplicationService{
     }
 
     @Override
-    public Response<Page<JobApplicationDTO>> getApplications(JobStatus status, JobPortal jobPortal, String search, int page, int size) {
+    public Response<Page<JobApplicationDTO>> getApplications(
+            JobStatus status,
+            JobPortal jobPortal,
+            String search,
+            int page,
+            int size
+    ) {
 
         log.info("getApplications");
 
@@ -203,7 +209,7 @@ public class JobApplicationServiceImpl implements JobApplicationService{
             spec = (spec == null) ? JobApplicationSpecifications.containsInNameOrCompanyOrDescription(search) : spec.and(JobApplicationSpecifications.containsInNameOrCompanyOrDescription(search));
         }
 
-        Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
+        Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
 
         Page<JobApplication> applicationPage = jobApplicationRepository.findAll(spec, pageable);
 

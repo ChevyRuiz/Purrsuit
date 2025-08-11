@@ -54,6 +54,6 @@ public class JobApplication {
     @NotNull(message = "currentJobStatus is required")
     private JobStatus currentJobStatus;
 
-    @OneToMany(mappedBy = "application", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<StatusRecord> statusHistory = new ArrayList<>();
+    @OneToMany(mappedBy = "application", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<StatusRecord> statusHistory;
 }
