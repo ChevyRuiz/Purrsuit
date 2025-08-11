@@ -43,7 +43,6 @@ public class JobApplication {
     @NotNull(message = "jobPortal is required")
     private JobPortal jobPortal;
 
-    @Lob
     @NotBlank(message = "jobDescription is required")
     private String jobDescription;
 
