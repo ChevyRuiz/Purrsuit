@@ -32,7 +32,7 @@ public class AuthServiceImpl implements AuthService{
         log.info("Inside register()");
 
         if (userRepository.existsByUsername(registrationRequest.getUsername())){
-            throw new BadRequestException("Email already exists");
+            throw new BadRequestException("Username already exists");
         }
 
         User userToSave = User.builder()

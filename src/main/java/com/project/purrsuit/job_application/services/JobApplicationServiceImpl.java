@@ -192,7 +192,7 @@ public class JobApplicationServiceImpl implements JobApplicationService{
         User user = userService.getCurrentLoggedInUser();
 
         Specification<JobApplication> spec = null;
-
+        log.info(search);
         if (user.getId() != null) {
             spec = JobApplicationSpecifications.hasUserId(user.getId());
         }
@@ -215,6 +215,7 @@ public class JobApplicationServiceImpl implements JobApplicationService{
 
         Page<JobApplicationDTO> dtoPage = applicationPage.map(app -> modelMapper.map(app, JobApplicationDTO.class));
 
+        log.info(search);
         return Response.<Page<JobApplicationDTO>>builder()
                 .statusCode(HttpStatus.OK.value())
                 .message("Applications retrieved successfully")

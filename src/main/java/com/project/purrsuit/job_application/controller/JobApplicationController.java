@@ -7,6 +7,7 @@ import com.project.purrsuit.job_application.services.JobApplicationService;
 import com.project.purrsuit.response.Response;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/applications")
+@Slf4j
 public class JobApplicationController {
 
     private final JobApplicationService jobApplicationService;
@@ -44,8 +46,9 @@ public class JobApplicationController {
             @RequestParam(required = false) JobPortal jobPortal,
             @RequestParam(required = false) String search,
             @RequestParam(defaultValue = "0") Integer page,
-            @RequestParam(defaultValue = "10") Integer size
+            @RequestParam(defaultValue = "12") Integer size
     ) {
+        log.info("jobStatus = {}, jobPortal = {}, search = {}", jobStatus, jobPortal, search);
         return ResponseEntity.ok(jobApplicationService.getApplications (
                     jobStatus,
                     jobPortal,

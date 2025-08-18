@@ -37,6 +37,7 @@ public class JobApplication {
     @NotBlank(message = "companyName is required")
     private String companyName;
 
+    @Column(columnDefinition = "text")
     private String postingUrl;
 
     @Enumerated(EnumType.STRING)
@@ -44,9 +45,10 @@ public class JobApplication {
     private JobPortal jobPortal;
 
     @NotBlank(message = "jobDescription is required")
+    @Column(columnDefinition = "text")
     private String jobDescription;
 
-    @Lob
+    @Column(columnDefinition = "text")
     private String additionalNotes;
 
     @Enumerated(EnumType.STRING)
